@@ -3,4 +3,13 @@
   <groupId>qualite.projet</groupId>
   <artifactId>qualite.projet</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <dependencies>
+  	<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
+	<dependency>
+	    <groupId>org.junit.jupiter</groupId>
+	    <artifactId>junit-jupiter</artifactId>
+	    <version>5.8.1</version>
+	    <scope>test</scope>
+	</dependency>
+  </dependencies>
 </project>
