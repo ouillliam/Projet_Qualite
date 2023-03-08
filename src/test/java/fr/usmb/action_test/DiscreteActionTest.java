@@ -16,6 +16,7 @@ import action.DiscreteAction;
 class DiscreteActionTest {
 	private DiscreteAction discrete;
 	private DiscreteAction discrete2;
+	private Object object;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -27,6 +28,12 @@ class DiscreteActionTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
+		object = new String("test");
+		Timer timer = new PeriodicTimer(2);
+		Timer timer2 = new PeriodicTimer(2);
+		
+		discrete = new DiscreteAction(object, "toUpperCase", timer);
+		discrete2 = new DiscreteAction(object, "toUpperCase", timer2);
 	}
 
 	@AfterEach
@@ -35,13 +42,6 @@ class DiscreteActionTest {
 
 	@Test
 	void test() {
-		
-		Object object = new String("test");
-		Timer timer = new PeriodicTimer(2);
-		Timer timer2 = new PeriodicTimer(2);
-		
-		discrete = new DiscreteAction(object, "toUpperCase", timer);
-		discrete2 = new DiscreteAction(object, "toUpperCase", timer2);
 		
 		assertTrue(discrete.hasNext());
 		discrete.next();
@@ -60,8 +60,6 @@ class DiscreteActionTest {
 		assertEquals(discrete.getObject(),object);
 		
 		assertEquals(-1,discrete.compareTo(discrete2));
-		
-		//fail("Not yet implemented");
 	}
 
 }
