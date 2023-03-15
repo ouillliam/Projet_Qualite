@@ -15,24 +15,53 @@ import timer.OneShotTimer;
 import timer.PeriodicTimer;
 import timer.Timer;
 
+/*
+ * Cette classe va réaliser les tests sur la classe DiscreteActionDependent
+ * 
+ * @author Benjamin
+ * @version 1.0
+ */
+
 class DiscreteActionDependentTest {
 
+	/*
+     * Première action discrete dependente
+     */
 	private DiscreteActionDependent discreteDependent;
+	
+	/*
+     * Seconde action discrete dependente
+     */
 	private DiscreteActionDependent discreteDependent2;
+	
+	/*
+     * Objet de l'action dicrete
+     */
 	private Object object;
+	
+	/*
+     * Temps d'attente avant la première action
+     */
 	private Timer timer;
+	
+	/*
+     * Temps d'attente avant la première action de la seconde action discrete
+     */
 	private Timer timer2;
+	
+	/*
+     * Temps d'attente de la première dependence
+     */
 	private Timer timer3;
+	
+	/*
+     * Temps d'attente de la seconde dependence
+     */
 	private Timer timer4;
 	
-	@BeforeAll
-	static void setUpBeforeClass() throws Exception {
-	}
-
-	@AfterAll
-	static void tearDownAfterClass() throws Exception {
-	}
-
+	/*
+	* SetUp de la classe permettant l'initialisation des objets avant chaque tests
+	*/
 	@BeforeEach
 	void setUp() throws Exception {
 		this.object = new String("test");
@@ -50,10 +79,9 @@ class DiscreteActionDependentTest {
 		discreteDependent2.addDependence(object, "toLowerCase", timer4);
 	}
 
-	@AfterEach
-	void tearDown() throws Exception {
-	}
-
+	/*
+	* Test si l'action à une suite
+	*/
 	@Test
 	void hasNext() {
 
@@ -70,6 +98,9 @@ class DiscreteActionDependentTest {
 		assertFalse(discreteDependent2.hasNext());
 	}
 	
+	/*
+	* Compare deux actions
+	*/
 	@Test
 	void compareto() {
 		
@@ -87,6 +118,9 @@ class DiscreteActionDependentTest {
 		assertEquals(-1,discreteDependent.compareTo(discreteDependent2));
 	}
 	
+	/*
+	* Test les getter
+	*/
 	@Test
 	void getter() {
 		discreteDependent.next();
@@ -115,6 +149,10 @@ class DiscreteActionDependentTest {
 		
 	}
 	
+	
+	/*
+	* Test la fonction updateTimeLaps()
+	*/
 	@Test
 	void updateTimeLaps() {
 		
