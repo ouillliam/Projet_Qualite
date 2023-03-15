@@ -60,7 +60,7 @@ class DiscreteActionDependentTest {
 	private Timer timer4;
 	
 	/*
-	* SetUp de la classe permettant l'initialisation des objets avant chaque tests
+	* SetUp permettant l'initialisation des objets avant chaque tests
 	*/
 	@BeforeEach
 	void setUp() throws Exception {

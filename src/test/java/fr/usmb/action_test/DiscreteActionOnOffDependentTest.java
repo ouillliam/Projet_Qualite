@@ -17,24 +17,44 @@ import timer.Timer;
 
 class DiscreteActionOnOffDependentTest {
 	
+	/*
+     * Première action discrete dependente On/Off
+     */
 	private DiscreteActionOnOffDependent discreteOnOff;
+	
+	/*
+     * Seconde action discrete dependente On/Off
+     */
 	private DiscreteActionOnOffDependent discreteOnOff2;
+	
+	/*
+     * Objet de l'action dicrete
+     */
 	private Object object;
+	
+	/*
+     * Temps d'attente avant On
+     */
 	private Timer timer;
+	
+	/*
+     * Temps d'attente avant Off
+     */
 	private Timer timer2;
+	
+	/*
+     * Temps d'attente avant On pour la seconde action
+     */
 	private Timer timer3;
+	
+	/*
+     * Temps d'attente avant Off pour la seconde action
+     */
 	private Timer timer4;
 
-	@BeforeAll
-	static void setUpBeforeClass() throws Exception {
-		
-	}
-
-	@AfterAll
-	static void tearDownAfterClass() throws Exception {
-		
-	}
-
+	/*
+	* SetUp permettant l'initialisation des objets avant chaque tests
+	*/
 	@BeforeEach
 	void setUp() throws Exception {
 		this.object = new String("test");
@@ -50,11 +70,9 @@ class DiscreteActionOnOffDependentTest {
 		this.discreteOnOff2 = new DiscreteActionOnOffDependent(object, "toUpperCase", timer3, "toLowerCase", timer4);
 	}
 
-	@AfterEach
-	void tearDown() throws Exception {
-		
-	}
-
+	/*
+	* Test si l'action à une suite
+	*/
 	@Test
 	void hasNext() {
 
@@ -71,6 +89,9 @@ class DiscreteActionOnOffDependentTest {
 		assertFalse(discreteOnOff2.hasNext());
 	}
 	
+	/*
+	* Compare deux actions
+	*/
 	@Test
 	void compareto() {
 		discreteOnOff.next();
@@ -80,6 +101,9 @@ class DiscreteActionOnOffDependentTest {
 		assertEquals(-1,discreteOnOff.compareTo(discreteOnOff2));
 	}
 	
+	/*
+	* Test les getter
+	*/
 	@Test
 	void getter() {
 		discreteOnOff.next();
@@ -107,6 +131,9 @@ class DiscreteActionOnOffDependentTest {
 		
 	}
 	
+	/*
+	* Test pour une initialisation avec des TreeSet
+	*/
 	@Test
 	void TreeSet() {
 		TreeSet<Integer> tree = new TreeSet<>();

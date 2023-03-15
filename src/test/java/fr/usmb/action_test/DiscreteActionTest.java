@@ -13,19 +13,32 @@ import org.junit.jupiter.api.Test;
 
 import action.DiscreteAction;
 
+/*
+ * Cette classe va réaliser les tests sur la classe DiscreteAction
+ * 
+ * @author Benjamin
+ * @version 1.0
+ */
 class DiscreteActionTest {
+	
+	/*
+     * Première action discrete dependente
+     */
 	private DiscreteAction discrete;
+	
+	/*
+     * Seconde action discrete dependente
+     */
 	private DiscreteAction discrete2;
+	
+	/*
+     * Objet de l'action dicrete
+     */
 	private Object object;
 
-	@BeforeAll
-	static void setUpBeforeClass() throws Exception {
-	}
-
-	@AfterAll
-	static void tearDownAfterClass() throws Exception {
-	}
-
+	/*
+	* SetUp permettant l'initialisation des objets avant chaque tests
+	*/
 	@BeforeEach
 	void setUp() throws Exception {
 		object = new String("test");
@@ -36,10 +49,9 @@ class DiscreteActionTest {
 		discrete2 = new DiscreteAction(object, "toUpperCase", timer2);
 	}
 
-	@AfterEach
-	void tearDown() throws Exception {
-	}
-
+	/*
+	* Test si l'action à une suite / si la consomation des temps est correct / si les getter fonctionnent
+	*/
 	@Test
 	void test() {
 		
