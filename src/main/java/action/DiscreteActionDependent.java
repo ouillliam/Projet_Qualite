@@ -146,7 +146,7 @@ public class DiscreteActionDependent implements DiscreteActionInterface {
 	}
 
 	public boolean hasNext() {
-		return this.baseAction.hasNext() || !this.depedentActions.isEmpty();		
+		return this.currentAction.hasNext();		
 	}
 	
 	public int getNextLapsTime() {
