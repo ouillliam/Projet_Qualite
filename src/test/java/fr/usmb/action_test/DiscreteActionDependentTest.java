@@ -107,12 +107,15 @@ class DiscreteActionDependentTest {
 		discreteDependent.updateTimeLaps();
 		discreteDependent2.updateTimeLaps();
 		
+		discreteDependent.next();
+		discreteDependent2.next();
+		
 		discreteDependent.spendTime(1);
 		discreteDependent2.spendTime(1);
 		
-		assertEquals(0,discreteDependent.compareTo(discreteDependent2));
-		discreteDependent.spendTime(1);
 		assertEquals(-1,discreteDependent.compareTo(discreteDependent2));
+		discreteDependent.spendTime(1);
+		assertEquals(0,discreteDependent.compareTo(discreteDependent2));
 	}
 	
 	/*
@@ -131,8 +134,9 @@ class DiscreteActionDependentTest {
 		
 		discreteDependent2.next();
 		discreteDependent2.updateTimeLaps();
+		discreteDependent2.next();
 		
-		assertEquals(3,discreteDependent2.getCurrentLapsTime());
+		assertEquals(4,discreteDependent2.getCurrentLapsTime());
 		
 		try {
 			assertEquals(object.getClass().getDeclaredMethod("toLowerCase", new Class<?>[0]),discreteDependent2.getMethod());
