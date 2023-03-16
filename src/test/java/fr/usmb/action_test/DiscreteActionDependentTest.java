@@ -62,11 +62,11 @@ class DiscreteActionDependentTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		this.object = new String("test");
-		this.timer = new PeriodicTimer(3);
-		this.timer2 = new OneShotTimer(3);
+		this.timer = new PeriodicTimer(1);
+		this.timer2 = new OneShotTimer(2);
 		
 		this.timer3 = new PeriodicTimer(3);
-		this.timer4 = new OneShotTimer(3);
+		this.timer4 = new OneShotTimer(4);
 		
 		
 		this.discreteDependent = new DiscreteActionDependent(object, "toUpperCase", timer);
@@ -114,7 +114,7 @@ class DiscreteActionDependentTest {
 		discreteDependent2.spendTime(1);
 		
 		assertEquals(-1,discreteDependent.compareTo(discreteDependent2));
-		discreteDependent.spendTime(2);
+		discreteDependent2.spendTime(2);
 		assertEquals(0,discreteDependent.compareTo(discreteDependent2));
 	}
 	
@@ -144,7 +144,6 @@ class DiscreteActionDependentTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		discreteDependent2.next();
 		
 		assertEquals(discreteDependent.getObject(),object);
 		
