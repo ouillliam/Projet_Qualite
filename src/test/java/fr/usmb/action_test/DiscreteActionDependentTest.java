@@ -70,9 +70,9 @@ class DiscreteActionDependentTest {
 		
 		
 		this.discreteDependent = new DiscreteActionDependent(object, "toUpperCase", timer);
-		this.discreteDependent2 = new DiscreteActionDependent(object, "toUpperCase", timer2);
+		this.discreteDependent2 = new DiscreteActionDependent(object, "toUpperCase", timer3);
 		
-		discreteDependent.addDependence(object, "toLowerCase", timer3);
+		discreteDependent.addDependence(object, "toLowerCase", timer2);
 		discreteDependent2.addDependence(object, "toLowerCase", timer4);
 	}
 
@@ -82,15 +82,15 @@ class DiscreteActionDependentTest {
 	@Test
 	void hasNext() {
 
-		assertTrue(discreteDependent.hasNext());
 		discreteDependent.next();
 		assertTrue(discreteDependent.hasNext());
+		discreteDependent.updateTimeLaps();
 		discreteDependent.next();
-		assertTrue(discreteDependent.hasNext());
+		assertFalse(discreteDependent.hasNext());
 		
-		assertTrue(discreteDependent2.hasNext());
 		discreteDependent2.next();
 		assertTrue(discreteDependent2.hasNext());
+		discreteDependent2.updateTimeLaps();
 		discreteDependent2.next();
 		assertFalse(discreteDependent2.hasNext());
 	}
@@ -114,7 +114,7 @@ class DiscreteActionDependentTest {
 		discreteDependent2.spendTime(1);
 		
 		assertEquals(-1,discreteDependent.compareTo(discreteDependent2));
-		discreteDependent.spendTime(1);
+		discreteDependent.spendTime(2);
 		assertEquals(0,discreteDependent.compareTo(discreteDependent2));
 	}
 	
