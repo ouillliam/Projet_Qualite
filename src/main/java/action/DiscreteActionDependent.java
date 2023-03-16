@@ -139,7 +139,7 @@ public class DiscreteActionDependent implements DiscreteActionInterface {
 	}
 
 	public DiscreteActionInterface next() {
-		//Integer lapsTime = this.getNextLapsTime();
+		this.getNextLapsTime();
 		Method method = this.getMethod();
 		Object object = this.getObject();
 		return this;
@@ -147,6 +147,11 @@ public class DiscreteActionDependent implements DiscreteActionInterface {
 
 	public boolean hasNext() {
 		return this.baseAction.hasNext() || !this.depedentActions.isEmpty();		
+	}
+	
+	public int getNextLapsTime() {
+		DiscreteActionInterface nextAction = this.currentAction.next();
+		return nextAction.getCurrentLapsTime();
 	}
 
 }
