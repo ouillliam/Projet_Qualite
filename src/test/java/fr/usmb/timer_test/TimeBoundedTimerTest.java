@@ -26,41 +26,51 @@ class TimeBoundedTimerTest {
 	
 	/**
 	 * Test de la fonction hasNext() lorsque la dernière valeur du timer est à la limite de fin
+	 * @throws Exception 
 	 */
 	@Test
-	void hasNextTest2() {
+	void hasNextTest2() throws Exception {
 		PeriodicTimer periodic = new PeriodicTimer(1);
 		TimeBoundedTimer tbTimer = new TimeBoundedTimer(periodic, 2, 3);
+		tbTimer.next();
 		tbTimer.next();
 		assertFalse(tbTimer.hasNext());
 	}
 	
 	/**
 	 * Test de la fonction hasNext() lorsque la dernière valeur du timer est au-delà de la limite de fin
+	 * @throws Exception 
 	 */
 	@Test
-	void hasNextTest3() {
+	void hasNextTest3() throws Exception {
 		PeriodicTimer periodic = new PeriodicTimer(10);
 		TimeBoundedTimer tbTimer = new TimeBoundedTimer(periodic, 5, 15);
+		tbTimer.next();
 		tbTimer.next();
 		assertFalse(tbTimer.hasNext());
 	}
 	
 	/**
-	 * Test de la fonction hasNext() lorsque le timer s'arrête avant la valeur de départ
+	 * Test de la fonction hasNext avec un OneShotTimer contenant une valeur suivante de 10 
+	 * Ainsi qu'un TimeBoundedTimer avec un temps de départ de 5
 	 */
 	@Test
 	void hasNextTest4() {
-		OneShotTimer oneshot = new OneShotTimer(1);
-		TimeBoundedTimer tbTimer = new TimeBoundedTimer(oneshot, 2);
-		assertFalse(tbTimer.hasNext());
+		OneShotTimer oneShotTimer = new OneShotTimer(10);
+
+        TimeBoundedTimer timeBoundedTimer = new TimeBoundedTimer(oneShotTimer, 5);
+        
+        assertTrue(timeBoundedTimer.hasNext());
+        assertEquals(10, timeBoundedTimer.next());
+        
 	}
 	
 	/**
 	 * Test de la fonction hasNext() lorsque la première valeur du timer est au-delà de la limite de fin
+	 * @throws Exception 
 	 */
 	@Test
-	void hasNextTest5() {
+	void hasNextTest5() throws Exception {
 		OneShotTimer oneshot = new OneShotTimer(4);
 		TimeBoundedTimer tbTimer = new TimeBoundedTimer(oneshot, 2, 3);
 		assertFalse(tbTimer.hasNext());
@@ -68,9 +78,10 @@ class TimeBoundedTimerTest {
 	
 	/**
 	 * Test de la fonction next() lorsque le timer à un comportement classique
+	 * @throws Exception 
 	 */
 	@Test
-	void nextTest1() {
+	void nextTest1() throws Exception {
 		PeriodicTimer periodic = new PeriodicTimer(1);
 		TimeBoundedTimer tbTimer = new TimeBoundedTimer(periodic, 3,6);
 		assertEquals(tbTimer.next(), 3);
@@ -80,23 +91,32 @@ class TimeBoundedTimerTest {
 	}
 	
 	/**
-	 * Test de la fonction next() lorsque le time s'arrête avant la valeur de début
+	 * Test d'un OneShotTimer avec une valeur suivante inférieure au temps de début
 	 */
 	@Test
 	void nextTest2() {
 		OneShotTimer oneshot = new OneShotTimer(1);
-		TimeBoundedTimer tbTimer = new TimeBoundedTimer(oneshot, 2);
-		assertNull(tbTimer.next());
+		assertThrows(NullPointerException.class, () -> new TimeBoundedTimer(oneshot, 2));
 	}
 	
 	/**
 	 * Test de la fonction next() lorsque la première valeur du timer est au-delà de la valeur limite
+	 * @throws Exception 
 	 */
 	@Test
-	void nextTest3() {
+	void nextTest3() throws Exception {
 		OneShotTimer oneshot = new OneShotTimer(4);
 		TimeBoundedTimer tbTimer = new TimeBoundedTimer(oneshot, 2, 3);
 		assertNull(tbTimer.next());
 	}
 	
+	/**
+	 * Test si le constructeur retourne une erreur si le temps de départ est plus important que le temps de fin
+	 */
+	@Test
+	void tbt9() {
+		OneShotTimer oneshot = new OneShotTimer(4);
+		assertThrows(Exception.class, () -> new TimeBoundedTimer(oneshot, 4, 3));		
+	}
+
 }
