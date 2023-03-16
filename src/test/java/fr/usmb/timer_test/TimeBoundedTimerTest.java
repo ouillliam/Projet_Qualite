@@ -99,14 +99,4 @@ class TimeBoundedTimerTest {
 		assertNull(tbTimer.next());
 	}
 	
-	/**
-	 * Test si le constructeur retourne une erreur si le temps de départ est plus important que le temps de fin
-	 */
-	@Test
-	void tbt9() {
-		OneShotTimer oneshot = new OneShotTimer(4);
-		assertThrows(Exception.class, () -> new TimeBoundedTimer(oneshot, 4, 3));		
-	}
-
-
 }

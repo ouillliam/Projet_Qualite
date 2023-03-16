@@ -56,10 +56,11 @@ class ClockTest {
 	 * Test de la fonction getTime
 	 */
     @Test
-    public void getTimeTest() {
+    public void getTimeTest() throws Exception {
        
-        this.instance.setNextJump(this.i);
-        assertEquals(this.i, this.instance.getTime());
+    	this.instance.setNextJump(this.i);
+        this.instance.increase(1);
+        assertEquals(1, this.instance.getTime());
         
     }
     

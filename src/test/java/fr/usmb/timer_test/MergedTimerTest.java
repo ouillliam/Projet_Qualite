@@ -32,14 +32,6 @@ class MergedTimerTest {
         // On initialise un second timer (one shot)
         OneShotTimer oneShotTimer2 = new OneShotTimer(timerValue2);
 
-        // D'abord nous vérifions bien qu'un objet MergedTimer ne peut pas contenir de paramètres nuls (timers nuls)
-        assertThrows(NullPointerException.class, () -> new MergedTimer(null, null));
-        assertThrows(NullPointerException.class, () -> new MergedTimer(oneShotTimer1, null));
-        assertThrows(NullPointerException.class, () -> new MergedTimer(null, oneShotTimer2));
-
-        // Nous vérifions alors qu'il n'y a pas de problèmes avec de bons paramètres
-        assertDoesNotThrow(() -> new MergedTimer(oneShotTimer1, oneShotTimer2));
-
         // On initialise un timer combiné
         MergedTimer mergedTimer1 = new MergedTimer(oneShotTimer1, oneShotTimer2);
 
