@@ -33,12 +33,14 @@ public class LogFormatter  extends Formatter {
 
 	  // this method is called just after the handler using this
 	  // formatter is created
+	  @Override
 	  public String getHead(Handler h) {
 		  return "";
 	  }
 	  
 	// this method is called just after the handler using this
 	  // formatter is closed
+	  @Override
 	  public String getTail(Handler h) {
 	    return "";
 	  }
