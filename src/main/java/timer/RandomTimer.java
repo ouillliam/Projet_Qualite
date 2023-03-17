@@ -130,18 +130,7 @@ public class RandomTimer implements Timer {
 		return -1; // Theoretically impossible !!!
 	}
 	
-	/*
-	 * Equivalent to methodInvocator.RandomTimer#next()
-	 * 
-	 * @param since has no effect
-	 * 
-	 * @see methodInvocator.RandomTimer#next(int)
-	 */
-	/*@Override
-	public Integer next(int since){
-		return this.next();
-	}*/
-	
+		
 	/**
 	 * Give good mean
 	 * Give wrong variance  
