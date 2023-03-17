@@ -57,7 +57,8 @@ public class DiscreteActionDependent implements DiscreteActionInterface {
 	
 	public void spendTime(int t) {
 		for (Iterator<DiscreteAction> iter = this.depedentActions.iterator(); iter.hasNext(); ) {
-		    iter.next();
+		    DiscreteAction element = iter.next();
+		    element.spendTime(t);
 		}
 	}
 
