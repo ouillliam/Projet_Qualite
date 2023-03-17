@@ -1,34 +1,69 @@
 package fr.usmb.timer_test;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
+import java.util.NoSuchElementException;
+import java.util.TreeSet;
+import java.util.Vector;
+
 import org.junit.jupiter.api.Test;
+
+import timer.DateTimer;
 
 class DateTimerTest {
 
-	@BeforeAll
-	static void setUpBeforeClass() throws Exception {
-	}
+	/*
+	 * Test de la fonction hasNext
+	 */
+    @Test
+    void hasNextTest() {
 
-	@AfterAll
-	static void tearDownAfterClass() throws Exception {
-	}
+        DateTimer emptyDates = new DateTimer(new TreeSet<>());
+        assertFalse(emptyDates.hasNext());
 
-	@BeforeEach
-	void setUp() throws Exception {
-	}
+        DateTimer emptyLapsTime = new DateTimer(new Vector<>());
+        assertFalse(emptyLapsTime.hasNext());
 
-	@AfterEach
-	void tearDown() throws Exception {
-	}
+        assertThrows(NullPointerException.class, () -> new DateTimer((TreeSet<Integer>) null));
 
-	@Test
-	void test() {
-		fail("Not yet implemented");
-	}
+        @SuppressWarnings({ "unchecked", "rawtypes" })
+        TreeSet<Integer> treeSet = new TreeSet();
+        treeSet.add(1);
+        treeSet.add(2);
+        treeSet.add(3);
+        DateTimer dateTimer= new DateTimer(treeSet);
 
+        for (int i = 0; i < treeSet.size(); i++) {
+            assertTrue(dateTimer.hasNext());
+            dateTimer.next();
+        }
+
+        assertFalse(dateTimer.hasNext());
+
+    }
+
+    /*
+	 * Test de la fonction next
+	 */
+    @Test
+    void nextTest() {
+
+        DateTimer emptyDates = new DateTimer(new TreeSet<>());
+        assertThrows(NoSuchElementException.class, () -> emptyDates.next());
+
+        @SuppressWarnings({ "rawtypes", "unchecked" })
+        TreeSet<Integer> treeSet = new TreeSet();
+        treeSet.add(1);
+        treeSet.add(2);
+        treeSet.add(3);
+        DateTimer dateTimer = new DateTimer(treeSet);
+
+        for (int i = 0; i < treeSet.size(); i++) {
+            assertEquals(1, dateTimer.next());
+        }
+
+        assertThrows(NoSuchElementException.class, () -> dateTimer.next());
+    }
 }

@@ -10,8 +10,11 @@ public class TimeBoundedTimer implements Timer {
 	private int time=0;
 	private boolean hasNext;
 
-	public TimeBoundedTimer(Timer timer2bound, int startTime, int stopTime) {
+	public TimeBoundedTimer(Timer timer2bound, int startTime, int stopTime) throws Exception {
 		this.timer2bound = timer2bound;
+		if(startTime > stopTime) {
+			throw new Exception("StartTime doit être plus petit que StopTime");
+		}
 		this.startTime = startTime;
 		this.stopTime = stopTime;
 		this.init();
