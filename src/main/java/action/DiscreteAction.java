@@ -82,7 +82,7 @@ public class DiscreteAction implements DiscreteActionInterface {
     	if(this.lapsTime < c.getCurrentLapsTime()){
     		return -1;
     	}
-		if(this.lapsTime == c.getCurrentLapsTime()){
+		if(this.lapsTime.equals(c.getCurrentLapsTime())){
 			return 0;
 		}
 		return 0;
